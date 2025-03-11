@@ -1,24 +1,24 @@
 <p align="center">
-<img src="Logo.png"  />
+<img src="assets/logo.png"  />
 </p>
 <p align="center" style="font-size: 24px;">
   PH Tube is a web-based video streaming application where users can browse and watch videos sorted by categories such as music, comedy, and tutorials.
 </p>
 
 <hr/>
-<p align="center" style="font-size: 34px; font-weight:bold">
+
+<!-- <p align="center" style="font-size: 34px; font-weight:bold">
  REST API
 </p>
 
 <p style=" font-weight:bold">
- GET: Categories 
+ GET: Categories
 </p>
-
 Endpoint: [https://openapi.programming-hero.com/api/phero-tube/categories](https://openapi.programming-hero.com/api/phero-tube/categories) <br/>
 
 <hr/>
 <p style=" font-weight:bold">
- GET: Videos 
+ GET: Videos
 </p>
 
 Endpoint: [https://openapi.programming-hero.com/api/phero-tube/videos](https://openapi.programming-hero.com/api/phero-tube/videos) <br/>
@@ -51,17 +51,13 @@ Example: [https://openapi.programming-hero.com/api/phero-tube/video/aaac](https:
 <hr/>
 <p align="center" style="font-size: 34px; font-weight:bold">
  Requirements
-</p>
+</p> -->
 
-### Create a responsive Navbar which have following elements
-
-- Logo of PH-Tube at Left
-- A Search Box with Search Button at Center
-- A Sort Button at the Right
-- (Add a border at bottom of the Navbar)
+### Functionality & Features
 
 ### Create Dynamic Category Section
 
+- A Search Box with Search Button at Center
 - Load all the Catagory Button From API and Show them in a centered position
 - on click on a certain button, Load specific Catagory Data
 - Integrate active button functionality for better UX
@@ -69,19 +65,14 @@ Example: [https://openapi.programming-hero.com/api/phero-tube/video/aaac](https:
 ### Create Dynamic Video Sections
 
 - Load all the videos from API
-- use the Card Layout mentioned in Design part
 - Show Verified badge (if Verified)
 - on click Show Video Details with Author info in a modal
 - Show No Video Icon if specific category have no videos
 
-## Additional Features
-
 ### Search Functionality
 
 - Integrate search functionality
-- on input change  de-activate active button on category and show matched videos only
-
-
+- on input change de-activate active button on category and show matched videos only
 
 <hr/>
 
@@ -89,10 +80,10 @@ Example: [https://openapi.programming-hero.com/api/phero-tube/video/aaac](https:
  Design Idea's
 </p>
 Basic Layout
-<img src="design/Frame 1.png">
+<img src="assets/design/Frame 1.png">
 <hr/>
 Error Layout
 
-<img src="design/Frame 3.png">
+<img src="assets/design/Frame 3.png">
 
 <hr/>
