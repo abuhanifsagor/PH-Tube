@@ -53,7 +53,7 @@ Example: [https://openapi.programming-hero.com/api/phero-tube/video/aaac](https:
  Requirements
 </p> -->
 
-### Functionality & Features
+### <h1 align="center">Functionality & Features</h1>
 
 ### Create Dynamic Category Section
 
