@@ -5,6 +5,14 @@ const chatagoresButtons = () => {
     .then((response) => response.json())
     .then((data) => displayCategories(data.categories));
 };
+
+function removeActiveClass(){
+    const activeBtn = document.getElementsByClassName("btn_active");
+    for (const item of activeBtn) {
+        item.classList.remove("btn_active");
+    }
+}
+
 const displayCategories = (Categories) => {
   const categoriesContainer = document.getElementById(
     "chatagoresButton-container"
@@ -12,26 +20,45 @@ const displayCategories = (Categories) => {
   for (const names of Categories) {
     const chatagoreDiv = document.createElement("span");
     chatagoreDiv.innerHTML = `
-            <button class="bg-slate-200 hover:bg-slate-300 text-black duration-300 font-medium py-2 px-4 rounded">
+            <button  onclick="loadByCategores(${names.category_id})" id="btn-${names.category_id}" class="bg-slate-200 hover:bg-slate-300 text-black duration-300 font-medium py-2 px-4 rounded">
             ${names.category}
             </button>
         `;
     categoriesContainer.append(chatagoreDiv);
   }
 };
-
 //INFO: VIDEOS API
-
 const loadVideos = () => {
   fetch("https://openapi.programming-hero.com/api/phero-tube/videos")
     .then((response) => response.json())
     .then((data) => displayVideos(data.videos));
+    removeActiveClass();
+    const btnAll = document.getElementById('btn-all');
+    btnAll.classList.add("btn_active")
 };
 
+    const loadByCategores = (id) =>{
+        const urls = `https://openapi.programming-hero.com/api/phero-tube/category/${id}`;
+        fetch(urls).then((response)=>response.json()).then(data=>{
+            const btnID = document.getElementById(`btn-${id}`)
+            removeActiveClass()
+            btnID.classList.add("btn_active");
+            displayVideos(data.category)
+        })
+    }
+
 const displayVideos = (videos) => {
+    
   const videoContainer = document.getElementById("videos-container");
-  console.log(videos[0]);
-  videos.forEach((video) => {
+  const videoNotFound = document.getElementById('noVideosFound');
+    videoContainer.innerHTML = '';
+    if(videos.length === 0){
+        videoNotFound.classList.remove("hidden");
+        return;
+    }else{
+        videoNotFound.classList.add("hidden");
+    }
+    videos.forEach((video) => {
     const videoThamble = video.thumbnail;
     const videoTitle = video.title;
     const views = video.others.views;
@@ -85,5 +112,5 @@ const displayVideos = (videos) => {
     videoContainer.append(videoDiv);
   });
 };
-
+loadVideos();
 chatagoresButtons();
