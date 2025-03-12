@@ -1,4 +1,5 @@
 // INFO: chatagores BUTTONS
+const searchInput = document.getElementById('search-navbar');
 
 const chatagoresButtons = () => {
   fetch("https://openapi.programming-hero.com/api/phero-tube/categories")
@@ -28,8 +29,8 @@ const displayCategories = (Categories) => {
   }
 };
 //INFO: VIDEOS API
-const loadVideos = () => {
-  fetch("https://openapi.programming-hero.com/api/phero-tube/videos")
+const loadVideos = (input="") => {
+  fetch(`https://openapi.programming-hero.com/api/phero-tube/videos?title=${input}`)
     .then((response) => response.json())
     .then((data) => displayVideos(data.videos));
     removeActiveClass();
@@ -112,5 +113,9 @@ const displayVideos = (videos) => {
     videoContainer.append(videoDiv);
   });
 };
+searchInput.addEventListener('keyup', (e) =>{
+    loadVideos(searchInput.value)
+} )
 loadVideos();
 chatagoresButtons();
+
