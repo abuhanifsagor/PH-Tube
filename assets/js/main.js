@@ -1,5 +1,6 @@
 // INFO: chatagores BUTTONS
-const searchInput = document.getElementById('search-navbar');
+const searchInput = document.getElementById("search-navbar");
+const searchInputb = document.getElementsByClassName("searchNavbar");
 
 const chatagoresButtons = () => {
   fetch("https://openapi.programming-hero.com/api/phero-tube/categories")
@@ -7,11 +8,11 @@ const chatagoresButtons = () => {
     .then((data) => displayCategories(data.categories));
 };
 
-function removeActiveClass(){
-    const activeBtn = document.getElementsByClassName("btn_active");
-    for (const item of activeBtn) {
-        item.classList.remove("btn_active");
-    }
+function removeActiveClass() {
+  const activeBtn = document.getElementsByClassName("btn_active");
+  for (const item of activeBtn) {
+    item.classList.remove("btn_active");
+  }
 }
 
 const displayCategories = (Categories) => {
@@ -29,44 +30,49 @@ const displayCategories = (Categories) => {
   }
 };
 //INFO: VIDEOS API
-const loadVideos = (input="") => {
-  fetch(`https://openapi.programming-hero.com/api/phero-tube/videos?title=${input}`)
+const loadVideos = (input = "") => {
+  fetch(
+    `https://openapi.programming-hero.com/api/phero-tube/videos?title=${input}`
+  )
     .then((response) => response.json())
     .then((data) => displayVideos(data.videos));
-    removeActiveClass();
-    const btnAll = document.getElementById('btn-all');
-    btnAll.classList.add("btn_active")
+  removeActiveClass();
+  const btnAll = document.getElementById("btn-all");
+  btnAll.classList.add("btn_active");
 };
 
-    const loadByCategores = (id) =>{
-        const urls = `https://openapi.programming-hero.com/api/phero-tube/category/${id}`;
-        fetch(urls).then((response)=>response.json()).then(data=>{
-            const btnID = document.getElementById(`btn-${id}`)
-            removeActiveClass()
-            btnID.classList.add("btn_active");
-            displayVideos(data.category)
-        })
-    }
+const loadByCategores = (id) => {
+  const urls = `https://openapi.programming-hero.com/api/phero-tube/category/${id}`;
+  fetch(urls)
+    .then((response) => response.json())
+    .then((data) => {
+      const btnID = document.getElementById(`btn-${id}`);
+      removeActiveClass();
+      btnID.classList.add("btn_active");
+      displayVideos(data.category);
+    });
+};
 
 const displayVideos = (videos) => {
-    
   const videoContainer = document.getElementById("videos-container");
-  const videoNotFound = document.getElementById('noVideosFound');
-    videoContainer.innerHTML = '';
-    if(videos.length === 0){
-        videoNotFound.classList.remove("hidden");
-        return;
-    }else{
-        videoNotFound.classList.add("hidden");
-    }
-    videos.forEach((video) => {
+  const videoNotFound = document.getElementById("noVideosFound");
+  videoContainer.innerHTML = "";
+  if (videos.length === 0) {
+    videoNotFound.classList.remove("hidden");
+    return;
+  } else {
+    videoNotFound.classList.add("hidden");
+  }
+  videos.forEach((video) => {
     const videoThamble = video.thumbnail;
     const videoTitle = video.title;
     const views = video.others.views;
     const profilePicture = video.authors[0].profile_picture;
     const profileName = video.authors[0].profile_name;
     const isVerified = video.authors[0].verified;
-    const verified = `${isVerified ? '<img src="assets/images/verify.png" alt="Verified">' : ''}`
+    const verified = `${
+      isVerified ? '<img src="assets/images/verify.png" alt="Verified">' : ""
+    }`;
     const videoDiv = document.createElement("div");
     videoDiv.classList.add(
       "w-full",
@@ -113,9 +119,10 @@ const displayVideos = (videos) => {
     videoContainer.append(videoDiv);
   });
 };
-searchInput.addEventListener('keyup', (e) =>{
-    loadVideos(searchInput.value)
-} )
+
+searchInput.addEventListener("keyup", (e) => {
+  loadVideos(searchInput.value);
+});
+
 loadVideos();
 chatagoresButtons();
-
